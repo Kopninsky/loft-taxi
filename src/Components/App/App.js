@@ -23,23 +23,23 @@ class App extends Component {
     this.setState({curPage: page})
   }
 
-  content = () => {
+  getContent = () => {
     switch (this.state.curPage) {
       case pages.login:
         return <Login pages = {pages} setPage={this.setPage}/>
       case pages.profile:
-        return <><Header pages = {pages} setPage={this.setPage}/><Profile pages = {pages} setPage={this.setPage}/></>
+        return <Profile pages = {pages} setPage={this.setPage}/>
       case pages.reg:
         return <Reg pages = {pages} setPage={this.setPage}/>
       case pages.map:
-        return <><Header pages = {pages} setPage={this.setPage}/><Map pages = {pages} setPage={this.setPage}/></>
+        return <Map pages = {pages} setPage={this.setPage}/>
       default:
         break
     }
   }
 
   render() {
-    return this.content()
+    return this.getContent()
   }
 }
 
