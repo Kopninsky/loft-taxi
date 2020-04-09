@@ -20,13 +20,13 @@ export default class Reg extends Component {
           <form className='ref__form'>
             <p className='ref__title'>Регистрация</p>
             <div className='ref__new-user'>
-              <div>Уже зарегистрирован? <Link onClick={()=>setPage(pages.profile)}>Войти</Link></div>
+              <div>Уже зарегистрирован? <Link onClick={()=>setPage(pages.login)}>Войти</Link></div>
             </div>
             <TextField label="Имя" />
             <TextField label="Фамилия" />
             <TextField label="Пароль" />
             <Button 
-              onClick={()=>setPage(pages.login)}
+              onClick={()=>setPage(pages.map)}
               variant="contained"
               color="primary">
               Зарегистрироваться

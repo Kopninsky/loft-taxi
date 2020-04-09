@@ -27,7 +27,7 @@ export default class Login extends Component {
             <Button 
               variant="contained"
               color="primary"
-              onClick={()=>setPage(pages.profile)}>
+              onClick={()=>setPage(pages.map)}>
               Войти
             </Button>
           </form>

@@ -9,7 +9,34 @@ import {
 export default class Header extends Component {
   render() {
     const {pages, setPage} = this.props
-    
+
+    const buttons = [
+      {
+        id: 1,
+        name: 'Карта',
+        acronim: pages.map
+      },
+      {
+        id: 2,
+        name: 'Профиль',
+        acronim: pages.profile
+      },
+      {
+        id: 3,
+        name: 'Выйти',
+        acronim: pages.login
+      }
+    ]
+
+    const setButtons = buttons.map(
+      el => <Button
+              key={el.id}
+              onClick={()=>setPage(el.acronim)}
+              color="inherit">
+                {el.name}
+            </Button>
+    )
+
     return (
       <>
         <AppBar 
@@ -17,9 +44,7 @@ export default class Header extends Component {
           position="static">
           <Toolbar>
             <Logo color="secondary"/>
-            <Button onClick={()=>setPage(pages.map)} color="inherit">Карта</Button>
-            <Button onClick={()=>setPage(pages.profile)} color="inherit">Профиль</Button>
-            <Button onClick={()=>setPage(pages.login)} color="inherit">Выйти</Button>
+            {setButtons()}
           </Toolbar>
         </AppBar>
       </>
