@@ -30,5 +30,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@material-ui/core": "^4.9.9",
+    "install": "^0.13.0",
+    "loft-taxi-mui-theme": "^1.2.0",
+    "node-sass": "^4.13.1",
+    "npm": "^6.14.4"
   }
 }
