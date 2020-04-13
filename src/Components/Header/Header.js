@@ -28,7 +28,7 @@ export default class Header extends Component {
       }
     ]
 
-    const setButtons = buttons.map(
+    const setButtons = () => buttons.map(
       el => <Button
               key={el.id}
               onClick={()=>setPage(el.acronim)}

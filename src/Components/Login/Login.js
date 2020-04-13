@@ -17,17 +17,20 @@ export default class Login extends Component {
           <Logo color="primary"/>
         </div>
         <div className="login__box login__box-form">
-          <form className='login__form'>
+          <form
+            id='form'
+            onSubmit={()=>{setPage(pages.map)}}
+            className='login__form'>
             <p className='login__title'>Войти</p>
             <div className='login__new-user'>
               <div>Новый пользовавтель? <Link onClick={()=>setPage(pages.reg)} >Зарегистрируйтесь</Link></div>
             </div>
-            <TextField label="Имя пользователя*" />
-            <TextField label="Пароль*" />
-            <Button 
+            <TextField required label="Имя пользователя" />
+            <TextField required label="Пароль" />
+            <Button
+              type='submit'
               variant="contained"
-              color="primary"
-              onClick={()=>setPage(pages.map)}>
+              color="primary">
               Войти
             </Button>
           </form>
