@@ -1,42 +1,40 @@
-import React, { Component } from 'react'
-import Login from '../Login'
-import Profile from '../Profile'
-import Map from '../Map'
-import Reg from '../Reg'
+import React, { useEffect, useState, useContext } from 'react'
+
+import {
+  pagesData,
+  Login,
+  Map,
+  Nopage,
+  Profile,
+  Singin
+} from '../../Pages'
+import { AuthContext } from '../../Context'
 
 import './app.scss'
 
-const pages = {
-  login : 'Вход',
-  profile : 'Профиль',
-  reg : 'Регистрация',
-  map : 'Карта'
-}
+const App = () => {
+  const [page, setPage] = useState(pagesData.login)
+  const { loginStatus } = useContext(AuthContext)
 
-class App extends Component {
-  state = {
-    curPage : pages.login
+  const handlePage = (page) => {
+    setPage(page)
   }
 
-  setPage = (page) => {
-    this.setState({curPage: page})
-  }
+  useEffect(() => {
+    !loginStatus ? handlePage(pagesData.login) : handlePage(pagesData.map)
+  }, [loginStatus])
 
-  render() {
-    const {login, profile, reg, map} = pages
-
-    switch (this.state.curPage) {
-      case login:
-        return <Login pages={pages} setPage={this.setPage}/>
-      case profile:
-        return <Profile pages={pages} setPage={this.setPage}/>
-      case reg:
-        return <Reg pages={pages} setPage={this.setPage}/>
-      case map:
-        return <Map pages={pages} setPage={this.setPage}/>
-      default:
-        return null
-    }
+  switch (page) {
+    case pagesData.login:
+      return <Login handlePage={handlePage}/>
+    case pagesData.profile:
+      return <Profile handlePage={handlePage}/>
+    case pagesData.singin:
+      return <Singin handlePage={handlePage}/>
+    case pagesData.map:
+      return <Map handlePage={handlePage}/>
+    default:
+      return <Nopage handlePage={handlePage}/>
   }
 }
 
