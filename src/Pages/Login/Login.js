@@ -7,12 +7,14 @@ import {
 } from '@material-ui/core'
 
 import { pagesData } from '../'
-import { AuthContext } from '../../Context'
+import { AuthContext, PageContext } from '../../Context'
 
 import './login.scss'
 
-const Login = ({ handlePage }) => {
+const Login = () => {
   const { login } = useContext(AuthContext)
+  const { handlePage } = useContext(PageContext)
+
   const handleSubmit = (e) => {
       e.preventDefault()
       return login()
@@ -21,7 +23,7 @@ const Login = ({ handlePage }) => {
   return (
     <section className="login__section">
       <div className="login__box">
-        <Logo color="primary"/>
+        <Logo white/>
       </div>
       <div className="login__box login__box-form">
         <form

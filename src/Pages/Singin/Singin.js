@@ -7,12 +7,13 @@ import {
 } from '@material-ui/core'
 
 import { pagesData } from '../'
-import {AuthContext} from '../../Context'
+import { AuthContext, PageContext } from '../../Context'
 
 import './singin.scss'
 
-const  Singin = ({ handlePage }) => {
+const  Singin = () => {
   const { login } = useContext(AuthContext)
+  const { handlePage } = useContext(PageContext)
   const handleSubmit = (e) => {
     e.preventDefault()
     return login()
@@ -21,7 +22,7 @@ const  Singin = ({ handlePage }) => {
   return (
     <section className="ref__section">
       <div className="ref__box">
-        <Logo color="primary"/>
+        <Logo white/>
       </div>
       <div className="ref__box ref__box-form">
         <form 

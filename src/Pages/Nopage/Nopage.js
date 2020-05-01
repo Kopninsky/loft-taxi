@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { pagesData } from '../'
+import { PageContext } from '../../Context'
 
-export default function Nopage({ hadnlePage }) {
+const  Nopage = () => {
+  const { handlePage } = useContext(PageContext)
   return (
     <div>
       <p>Такой страницы нет</p>
       <button
-        onClick={hadnlePage(pagesData.login)}>
+        onClick={handlePage(pagesData.login)}>
           Вернуться на страницу регистрации
       </button>
     </div>
   )
 }
+
+export default Nopage

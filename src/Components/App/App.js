@@ -1,41 +1,21 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useContext } from 'react'
 
-import {
-  pagesData,
-  Login,
-  Map,
-  Nopage,
-  Profile,
-  Singin
-} from '../../Pages'
-import { AuthContext } from '../../Context'
+import { pagesData } from '../../Pages'
+import { PageContext } from '../../Context'
+import Content from '../Content'
+import Header from '../Header'
 
 import './app.scss'
 
 const App = () => {
-  const [page, setPage] = useState(pagesData.login)
-  const { loginStatus } = useContext(AuthContext)
+  const { page } = useContext(PageContext)
 
-  const handlePage = (page) => {
-    setPage(page)
-  }
-
-  useEffect(() => {
-    !loginStatus ? handlePage(pagesData.login) : handlePage(pagesData.map)
-  }, [loginStatus])
-
-  switch (page) {
-    case pagesData.login:
-      return <Login handlePage={handlePage}/>
-    case pagesData.profile:
-      return <Profile handlePage={handlePage}/>
-    case pagesData.singin:
-      return <Singin handlePage={handlePage}/>
-    case pagesData.map:
-      return <Map handlePage={handlePage}/>
-    default:
-      return <Nopage handlePage={handlePage}/>
-  }
+  return (
+    <>
+      {page === pagesData.map || page === pagesData.profile ? <Header /> : null}
+      <Content />
+    </>
+  )
 }
 
 export default App

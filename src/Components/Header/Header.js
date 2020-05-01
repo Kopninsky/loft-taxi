@@ -7,10 +7,11 @@ import {
 } from '@material-ui/core'
 
 import { pagesData } from '../../Pages'
-import { AuthContext } from '../../Context'
+import { AuthContext, PageContext } from '../../Context'
 
-const Header = ({ handlePage }) => {
+const Header = () => {
   const { logout } = useContext(AuthContext)
+  const { handlePage } = useContext(PageContext)
 
   const setButtons = () => {
     const pagesArr = Object.values(pagesData)

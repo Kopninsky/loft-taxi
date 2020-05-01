@@ -1,15 +1,23 @@
 import React from 'react'
 
-import Header from '../../Components/Header'
+import Form from '../../Components/Form'
+import { configure } from './formData'
 
 import './profile.scss'
 
-const Profile = ({ handlePage }) => {
+const Profile = () => {
+
+  const classes = {
+    width: '400px',
+    height: '500px'
+  }
 
   return (
     <section className='profile'>
-      <Header handlePage={handlePage}/>
       Profile
+      <div style={classes}>
+        <Form configure={configure} />
+      </div>
     </section>
   )
 }
