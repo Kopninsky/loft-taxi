@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useContext } from 'react'
 import { Logo } from 'loft-taxi-mui-theme'
 import { 
   AppBar,
@@ -6,48 +6,42 @@ import {
   Button
 } from '@material-ui/core'
 
-export default class Header extends Component {
-  render() {
-    const {pages, setPage} = this.props
+import { pagesData } from '../../Pages'
+import { AuthContext, PageContext } from '../../Context'
 
-    const buttons = [
-      {
-        id: 1,
-        name: 'Карта',
-        acronim: pages.map
-      },
-      {
-        id: 2,
-        name: 'Профиль',
-        acronim: pages.profile
-      },
-      {
-        id: 3,
-        name: 'Выйти',
-        acronim: pages.login
-      }
-    ]
+const Header = () => {
+  const { logout } = useContext(AuthContext)
+  const { handlePage } = useContext(PageContext)
 
-    const setButtons = () => buttons.map(
+  const setButtons = () => {
+    const pagesArr = Object.values(pagesData)
+    const newArr = pagesArr.filter(el => el.title !== 'Вход' && el.title !== 'Регистрация')
+
+    return newArr.map(
       el => <Button
               key={el.id}
-              onClick={()=>setPage(el.acronim)}
+              onClick={()=>handlePage(el)}
               color="inherit">
-                {el.name}
+                {el.title}
             </Button>
     )
-
-    return (
-      <>
-        <AppBar 
-          color="inherit"
-          position="static">
-          <Toolbar>
-            <Logo color="secondary"/>
-            {setButtons()}
-          </Toolbar>
-        </AppBar>
-      </>
-    )
   }
+
+  return (
+    <AppBar 
+      color="inherit"
+      position="static">
+      <Toolbar>
+        <Logo color="secondary"/>
+        {setButtons()}
+        <Button
+          onClick={()=>logout()}
+          color="inherit">
+          Выход
+        </Button>
+      </Toolbar>
+    </AppBar>
+  )
 }
+
+export default Header

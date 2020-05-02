@@ -1,43 +1,21 @@
-import React, { Component } from 'react'
-import Login from '../Login'
-import Profile from '../Profile'
-import Map from '../Map'
-import Reg from '../Reg'
+import React, { useContext } from 'react'
+
+import { pagesData } from '../../Pages'
+import { PageContext } from '../../Context'
+import Content from '../Content'
+import Header from '../Header'
 
 import './app.scss'
 
-const pages = {
-  login : 'Вход',
-  profile : 'Профиль',
-  reg : 'Регистрация',
-  map : 'Карта'
-}
+const App = () => {
+  const { page } = useContext(PageContext)
 
-class App extends Component {
-  state = {
-    curPage : pages.login
-  }
-
-  setPage = (page) => {
-    this.setState({curPage: page})
-  }
-
-  render() {
-    const {login, profile, reg, map} = pages
-
-    switch (this.state.curPage) {
-      case login:
-        return <Login pages={pages} setPage={this.setPage}/>
-      case profile:
-        return <Profile pages={pages} setPage={this.setPage}/>
-      case reg:
-        return <Reg pages={pages} setPage={this.setPage}/>
-      case map:
-        return <Map pages={pages} setPage={this.setPage}/>
-      default:
-        return null
-    }
-  }
+  return (
+    <>
+      {page === pagesData.map || page === pagesData.profile ? <Header /> : null}
+      <Content />
+    </>
+  )
 }
 
 export default App
